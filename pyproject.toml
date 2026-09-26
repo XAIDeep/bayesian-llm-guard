@@ -21,3 +21,10 @@ pydantic-settings = "^2.0.0"
 pytest = "^7.3.0"
 black = "^23.3.0"
 isort = "^5.12.0"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:tool.poetry.version"]
+branch = "main"
+build_command = "pip install poetry && poetry build"
+commit_message = "chore(release): v{version} [skip ci]"
+commit_author = "github-actions[bot] <actions@github.com>"

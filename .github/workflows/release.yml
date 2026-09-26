@@ -1,0 +1,45 @@
+name: Semantic Release and PyPI Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Semantic Release and Publish
+    runs-on: ubuntu-latest
+
+    # Required permissions for updating repository and pushing to PyPI
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+        with:
+          # Fetch the entire history so the semantic release tool can parse commit messages
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Python Semantic Release
+        id: semantic
+        uses: python-semantic-release/python-semantic-release@v8.3.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # The following steps will ONLY execute if a new release was actually created
+      - name: Install Poetry
+        if: steps.semantic.outputs.released == 'true'
+        run: curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Publish to PyPI via Trusted Publishing
+        if: steps.semantic.outputs.released == 'true'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
