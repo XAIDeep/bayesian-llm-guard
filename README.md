@@ -1,5 +1,7 @@
 # Bayesian LLM Guard
 
+[![PyPI version](https://img.shields.io/pypi/v/bayesian-llm-guard.svg)](https://pypi.org/project/bayesian-llm-guard/)
+
 **Epistemic Uncertainty Estimation & Guardrails for Agentic LLMs and RAG Systems**
 
 Bayesian LLM Guard is an enterprise-grade middleware designed to detect and prevent Large Language Model (LLM) hallucinations. By leveraging Vectorized Monte Carlo Dropout, it calculates the epistemic variance of neural network representations, allowing you to intercept uncertain or fabricated responses in real-time before they reach the user.
