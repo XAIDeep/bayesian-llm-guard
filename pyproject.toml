@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "bayesian-llm-guard"
-version = "1.0.0"
+version = "1.0.1"
 description = "Epistemic Uncertainty Estimation & Guardrails for Agentic LLMs and RAG Systems"
 readme = "README.md"
 authors = ["AI Research Team <research@xaideep.com>"]
