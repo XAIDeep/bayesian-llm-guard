@@ -2,6 +2,21 @@
 
 <!-- version list -->
 
+## v1.1.0 (2026-10-05)
+
+### Documentation
+
+- Update README with project description and usage examples
+  ([#9](https://github.com/XAIDeep/bayesian-llm-guard/pull/9),
+  [`f5db368`](https://github.com/XAIDeep/bayesian-llm-guard/commit/f5db368c71ef7ffda8978f5a25ebe1d7af83e3b7))
+
+### Features
+
+- Add native async/await support to uq_guard decorator
+  ([#9](https://github.com/XAIDeep/bayesian-llm-guard/pull/9),
+  [`f5db368`](https://github.com/XAIDeep/bayesian-llm-guard/commit/f5db368c71ef7ffda8978f5a25ebe1d7af83e3b7))
+
+
 ## v1.0.1 (2026-09-27)
 
 ### Bug Fixes
