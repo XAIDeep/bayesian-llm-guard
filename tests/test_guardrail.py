@@ -30,11 +30,15 @@ def test_guardrail_raises_exception_on_hallucination():
     @uq_guard(uq_engine=engine, config=config)
     def mock_rag_pipeline():
         """Simulating a function returning features from a Retrieval-Augmented Generation pipeline."""
-        return {
+        payload = {
             "tensor_features": torch.randn(1, 10), 
             "response": "This is a hallucinated fake answer."
         }
+        print("Generated response before rejection:", payload["response"])
+        return payload
 
     # We expect the UQGuardException to be raised and block execution
-    with pytest.raises(UQGuardException):
+    with pytest.raises(UQGuardException) as exc:
         mock_rag_pipeline()
+
+    print("Rejected because:", exc.value)
