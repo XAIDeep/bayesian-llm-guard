@@ -10,7 +10,6 @@ env/
 
 # Poetry / packaging
 .poetry/
-poetry.lock
 
 # Test and coverage artifacts
 .pytest_cache/
@@ -35,3 +34,5 @@ Thumbs.db
 build/
 dist/
 *.egg-info/
+
+architectural_plan.html

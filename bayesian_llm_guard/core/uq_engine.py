@@ -13,8 +13,15 @@ class UQEngine:
     Executes vectorized stochastic forward passes through a PyTorch model
     to calculate epistemic variance.
     """
-    
+
     def __init__(self, model: nn.Module, mc_samples: int = 30) -> None:
+        if not isinstance(model, nn.Module):
+            raise TypeError("model must be an instance of torch.nn.Module.")
+        if not isinstance(mc_samples, int):
+            raise TypeError("mc_samples must be an integer.")
+        if mc_samples < 2:
+            raise ValueError("mc_samples must be at least 2 to compute an unbiased variance estimate.")
+
         self.model = model
         self.mc_samples = mc_samples
 
@@ -28,19 +35,39 @@ class UQEngine:
         """
         Calculates the maximum epistemic variance using vectorized Monte Carlo samples.
         """
+        if not isinstance(input_tensor, torch.Tensor):
+            raise TypeError("input_tensor must be a torch.Tensor.")
+        if input_tensor.numel() == 0:
+            raise ValueError("input_tensor must not be empty.")
+        if input_tensor.dim() == 0:
+            raise ValueError("input_tensor must be at least 1-dimensional.")
+        if not torch.is_floating_point(input_tensor):
+            raise TypeError("input_tensor must have a floating point dtype.")
+        if torch.isnan(input_tensor).any():
+            raise ValueError("input_tensor contains NaN values.")
+        if torch.isinf(input_tensor).any():
+            raise ValueError("input_tensor contains infinite values.")
+
         self._enable_dropout()
-        
+
         with torch.no_grad():
-            # ENTERPRISE BATCHING: Duplicate the tensor along the batch dimension.
-            # If input is (1, 768), repeated_tensor becomes (30, 768).
-            # This allows the GPU to process all Monte Carlo samples in parallel.
-            repeat_dims = [self.mc_samples] + [1] * (input_tensor.dim() - 1)
-            repeated_tensor = input_tensor.repeat(*repeat_dims)
-            
-            # Single highly-parallel forward pass
+            repeated_tensor = input_tensor.unsqueeze(0).repeat(
+                self.mc_samples,
+                *([1] * input_tensor.dim()),
+            )
             predictions = self.model(repeated_tensor)
-            
-        # Calculate statistical variance across the batch dimension (dim=0)
+
+        if not isinstance(predictions, torch.Tensor):
+            raise TypeError("model output must be a torch.Tensor.")
+        if predictions.numel() == 0:
+            raise ValueError("model output must not be empty.")
+        if predictions.ndim == 0:
+            raise ValueError("model output must have at least one dimension.")
+
         variances = torch.var(predictions, dim=0, unbiased=True)
-        
-        return float(variances.max().item())
+        max_variance = variances.max()
+
+        if not torch.isfinite(max_variance):
+            raise ValueError("Computed variance is not finite; check model output and input tensor.")
+
+        return float(max_variance.item())
