@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.2.1 (2026-10-28)
+
+### Bug Fixes
+
+- Validate uncertainty inputs and sampling
+  ([`63e23f0`](https://github.com/XAIDeep/bayesian-llm-guard/commit/63e23f0f072d0e3f5784fdc346d39ee4e8fe7034))
+
+
 ## v1.2.0 (2026-10-17)
 
 ### Bug Fixes
