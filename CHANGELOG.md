@@ -2,6 +2,42 @@
 
 <!-- version list -->
 
+## v1.2.0 (2026-10-17)
+
+### Bug Fixes
+
+- Support Python 3.13 and expand CI coverage
+  ([#10](https://github.com/XAIDeep/bayesian-llm-guard/pull/10),
+  [`a99f0db`](https://github.com/XAIDeep/bayesian-llm-guard/commit/a99f0dbb078f41594cda58748601f81a8dc2dd26))
+
+### Documentation
+
+- Update README with project description and usage examples
+  ([#10](https://github.com/XAIDeep/bayesian-llm-guard/pull/10),
+  [`a99f0db`](https://github.com/XAIDeep/bayesian-llm-guard/commit/a99f0dbb078f41594cda58748601f81a8dc2dd26))
+
+### Features
+
+- Add native async/await support to uq_guard decorator
+  ([#10](https://github.com/XAIDeep/bayesian-llm-guard/pull/10),
+  [`a99f0db`](https://github.com/XAIDeep/bayesian-llm-guard/commit/a99f0dbb078f41594cda58748601f81a8dc2dd26))
+
+
+## v1.1.0 (2026-10-05)
+
+### Documentation
+
+- Update README with project description and usage examples
+  ([#9](https://github.com/XAIDeep/bayesian-llm-guard/pull/9),
+  [`f5db368`](https://github.com/XAIDeep/bayesian-llm-guard/commit/f5db368c71ef7ffda8978f5a25ebe1d7af83e3b7))
+
+### Features
+
+- Add native async/await support to uq_guard decorator
+  ([#9](https://github.com/XAIDeep/bayesian-llm-guard/pull/9),
+  [`f5db368`](https://github.com/XAIDeep/bayesian-llm-guard/commit/f5db368c71ef7ffda8978f5a25ebe1d7af83e3b7))
+
+
 ## v1.0.1 (2026-09-27)
 
 ### Bug Fixes
