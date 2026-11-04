@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.2.2 (2026-11-04)
+
+### Bug Fixes
+
+- **deps**: Update vulnerable development packages
+  ([`c0098e6`](https://github.com/XAIDeep/bayesian-llm-guard/commit/c0098e6cd5103cc2e6f881fe0fb54c4f71c733b7))
+
+
 ## v1.2.1 (2026-10-28)
 
 ### Bug Fixes
