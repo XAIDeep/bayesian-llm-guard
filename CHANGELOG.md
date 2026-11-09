@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.2.3 (2026-11-09)
+
+### Bug Fixes
+
+- **deps**: Require patched filelock on supported Python
+  ([`5c8dfa6`](https://github.com/XAIDeep/bayesian-llm-guard/commit/5c8dfa63789dd0fcdd95d80053d5109884fec98a))
+
+
 ## v1.2.2 (2026-11-04)
 
 ### Bug Fixes
